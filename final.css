@@ -1,0 +1,46 @@
+/* Site Wide */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Footer */
+footer p {
+    clear: both;
+    font-size: 0.6em;
+    text-align: center;  
+}
+
+/* Nav */
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: color 0.4s;
+}
+
+nav li a:hover {
+    color: #999999;
+}
+
+/* Gallery  */
+figure {
+    border: 1px solid black;
+    float: left;
+    width: 400px;
+    height: 300px;
+}
