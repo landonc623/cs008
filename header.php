@@ -1,6 +1,6 @@
 <!-- Header -->
 <header>
-    <h1>Title of Site</h1>
-    <h2>Site "Slogan"</h2>
+    <h1>Picture Studios</h1>
+    <h2>Every photo tells a story.</h2>
 </header>
 <!-- End of Header -->

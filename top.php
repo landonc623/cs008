@@ -33,7 +33,11 @@ $domain .= $server;
 
 print PHP_EOL . '<!-- include libraries -->' . PHP_EOL;
 
-// **libraries here**
+require_once 'lib/security.php';
+
+include_once 'lib/validation-functions.php';
+
+include_once 'lib/mail-message.php';
 
 print PHP_EOL . '<!-- finished including libraries -->' . PHP_EOL;
 ?>

@@ -3,7 +3,18 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+    margin: 0 20px 0 20px;
+}
+
+/* Header */
+
+header {
+    border-bottom: 2px solid darkgray;
+}
+
 /* Footer */
+
 footer p {
     clear: both;
     font-size: 0.6em;
@@ -14,10 +25,11 @@ footer p {
 
 nav ul {
     list-style-type: none;
-    margin: 0;
+    margin-top: 8px;
     padding: 0;
     overflow: hidden;
     background-color: #333333;
+    border-radius: 10px;
 }
 
 nav li {
@@ -37,10 +49,79 @@ nav li a:hover {
     color: #999999;
 }
 
+/* About */
+
+
+
 /* Gallery  */
+
 figure {
     border: 1px solid black;
     float: left;
     width: 400px;
     height: 300px;
+}
+
+/* Form */
+
+fieldset {
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+fieldset.buttons {
+    border: none;
+}
+
+input.button {
+    border: none;
+    border-radius: 10px;
+    background-color: darkgray;
+    box-shadow: 2px 2px 2px lightgray;
+    padding: 0.4em;
+}
+
+input.button:hover {
+    cursor: pointer;
+}
+
+input.button:focus {
+    outline: 0;
+}
+
+fieldset.text input {
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px lightgray;
+    display: block;
+    padding: 0.6em;
+}
+
+fieldset.text input:focus {
+    border: 2px solid #333333;
+    outline: 0;
+}
+
+fieldset.text label {
+    display: block;
+    padding: 0 0 0.5em 0;
+}
+
+fieldset.listbox legend {
+    padding-bottom: 0.5em;
+}
+
+select {
+    outline: 0;
+}
+
+.mistake {
+    color: #fff;
+    background-color: #800;
+    border: thin solid #000;
+}
+
+#errors ol li {
+    color: #ff5555;
 }
