@@ -1,4 +1,5 @@
 <?php include '../top.php'; ?>
+
 <main>
     <article>
         <p>Welcome to Picture Studios! We believe that every photo tells a story, and because of that, it is our mission to provide the upmost quality of photos for every occasion. 

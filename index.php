@@ -24,5 +24,8 @@
         <ul class="column">Data
             <li><a href="data/form-results.csv">Form Results CSV</a>
         </ul>
+        <ul class="column">Images
+            <li><a href="uploads/">Uploads Folder</a>
+        </ul>
     </body>
 </html>

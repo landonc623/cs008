@@ -1,8 +1,12 @@
-<?php
+<?php include '../top.php' ?>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<main>
+    <article>
+        <h3>Some of the past winners of our contest include...</h3>
+    </article>
+</main>
 
+<?php include '../footer.php' ?>
+
+</body>
+</html>

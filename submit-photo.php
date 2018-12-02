@@ -12,6 +12,11 @@ $experience = '';
 
 $category = '';
 
+$target_dir = "../uploads/";
+$target_file = $target_dir . basename($_FILES["uplImage"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
 print PHP_EOL . '<!-- Section 1c. Initialize Form Error Flags -->' . PHP_EOL;
 
 $firstNameERROR = false;
@@ -23,6 +28,8 @@ $emailERROR = false;
 $experienceERROR = false;
 
 $categoryERROR = false;
+
+$imageERROR = false;
 
 print PHP_EOL . '<!-- Section 1d. Misc Variables -->' . PHP_EOL;
 
@@ -56,6 +63,9 @@ if (isset($_POST["btnSubmit"])) {
     
     $category = htmlentities($_POST["radCategory"], ENT_QUOTES, "UTF-8");
     
+    $image = htmlentities(basename($_FILES['uplImage']['name']), ENT_QUOTES, "UTF-8");
+    $imgext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    
     print PHP_EOL . '<!-- Section 2c. Validation -->' . PHP_EOL;
     
     if ($firstName == '') {
@@ -87,9 +97,50 @@ if (isset($_POST["btnSubmit"])) {
         $experienceERROR = true;
     }
     
-    if ($category == '') {
-        $errorMsg[] = 'Please select a category.';
+    if ($category == "") {
+        $errorMsg[] = "Please select a category.";
         $categoryERROR = true;
+    }
+    
+    // Check if image file is an actual image or fake image
+    $check = getimagesize($_FILES["uplImage"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+    
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+    
+    // Check file size
+    if ($_FILES["uplImage"]["size"] > 1000000) {
+        echo "Sorry, file is too large.";
+        $uploadOk = 0;
+    }
+    
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != 
+            "jpeg" && $imageFileType != "gif") {
+        echo "Sorry, only JPG, JPEG, PNG and GIF files are allowed.";
+        $uploadOk = 0;
+    }
+    
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // If everything else is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["uplImage"]["tmp_name"], $target_file)) {
+            echo "The file " . basename($_FILES["uplImage"]["name"]) . " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }       
     }
     
     print PHP_EOL . '<!-- Section 2d. Process Form - Passed Validation -->' . PHP_EOL;
@@ -105,6 +156,7 @@ if (isset($_POST["btnSubmit"])) {
         $dataRecord[] = $email;
         $dataRecord[] = $experience;
         $dataRecord[] = $category;
+        $dataRecord[] = $image . $imgext;
         
         $myFolder = '../data/';
         $myFileName = 'form-results';
@@ -114,7 +166,6 @@ if (isset($_POST["btnSubmit"])) {
         $file = fopen($filename, 'a');
         
         fputcsv($file, $dataRecord);
-        
         fclose($file);
         
         print PHP_EOL . '<!-- Section 2f. Create message -->' . PHP_EOL;
@@ -123,7 +174,7 @@ if (isset($_POST["btnSubmit"])) {
         $message .= '<table rules="all" style="border: 1px solid black;" cellpadding="10">';
         
         foreach ($_POST as $htmlName => $value) {
-            if ($htmlName != 'btnSubmit') {
+            if ($htmlName != 'btnSubmit' && $htmlName != 'MAX_FILE_SIZE') {
                 $message .= '<tr><td><strong>';
                 $camelCase = preg_split('/(?=[A-Z])/', substr($htmlName, 3));
 
@@ -132,8 +183,11 @@ if (isset($_POST["btnSubmit"])) {
                 }
                 $message .= '</strong></td>';
                 $message .= '<td>' .  htmlentities($value, ENT_QUOTES, "UTF-8") . '</td></tr>';
-            }    
+            }
         }
+        
+        $message .= '<tr><td><strong>Image</strong></td>';
+        $message .= '<td><a href="https://lcayia.w3.uvm.edu/cs008-final-project/uploads/' . $_FILES["uplImage"]["name"] . '">' . $_FILES["uplImage"]["name"] . '</a></td></tr>';
         
         $message .= '</table>';
         
@@ -189,10 +243,11 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
     
     print PHP_EOL . '<!-- SECTION 3c html Form -->' . PHP_EOL;
 ?>
-        
+       
 <form action = "<?php print $phpSelf; ?>"
       id = "frmRegister"
-      method = "post">
+      method = "post"
+      enctype="multipart/form-data">
 
         <fieldset class="text">
             <legend>Contact Information</legend>
@@ -283,6 +338,12 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
                             <option
                                 value="Professional">Professional - I own a dedicated camera and have done professional photography.</option>
                 </select>
+        </fieldset>
+        
+        <fieldset class="upload">
+            <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+            Choose a file to upload:
+            <input name="uplImage" id="uplImage" type="file">
         </fieldset>
     
         <fieldset class="buttons">
