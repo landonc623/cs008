@@ -57,7 +57,7 @@
             print 'activePage';
         }
         print '">';
-        print '<a href="photos-for-sale.php">Photos for Sale</a>';
+        print '<a href="photos-for-sale.php">Who We Support</a>';
         print '</li>';
         ?>
     </ul>
