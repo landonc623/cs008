@@ -4,12 +4,12 @@
     <article>
         <p>Welcome to Picture Studios! We believe that every photo tells a story, and because of that, it is our mission to provide the upmost quality of photos for every occasion. 
            Founded in November of 1990, we have over 25 years in the photography industry, and our talented photographers really display our years if experience! Located in Burlington
-           Vermont, we are a local small business with around 10 employees, ranging from concert to wedding photography. We can do small and large events, and also videography for a 
-           variety of ceremonies. Our company also does senior portraits and family portraits as well.</p>
+           Vermont, we are a local small business with around 10 employees, ranging from landscape to wedding photography. We can do small and large events, and also videography for a 
+           variety of gatherings. Our company also does portraits as well.</p>
 
         <h3>How we Were Founded:</h3>
         <p>As said above, we were founded 28 years ago in November of 1990. We initially started with just one photographer, and grew to now have fifteen photographers employed! 
-        Our founder, Tina Belcher, enjoyed photographing customers at her fathers' burger restaurant. Tina at her local high school would take pictures at all of the sporting
+        Our founder, Tina Belcher, enjoys photographing landscape images from the beautiful outdoors in Vermont. Tina at her local high school would take pictures at all of the sporting
         events, and even took some Senior photos of her fellow classmates. Originally from Ocean City, New Jersey, Tina decided to move to Vermont and attend UVM, graduating 
         in 1988 with her degree in Photography from the Department of Art and Art History. Once she realized she loved Burlington too much to leave, she decided to start up her
         own small business, Picture Studios, in Burlington Vermont.</p>
@@ -19,13 +19,13 @@
             ranging from:</p>
 
         <ul id="events">
+            <li>Landscape Images</li>
+            <li>Travel Photography</li>
+            <li>Outdoor Sports</li>
             <li>Weddings</li>
             <li>Birthdays</li>
-            <li>Graduations</li>
-            <li>Proms</li>
             <li>Concerts</li>
-            <li>Senior Portraits</li>
-            <li>Family Portraits</li>
+            <li>Portraits</li>
             <li>Corporate Events</li>
         </ul>
 
