@@ -62,6 +62,11 @@ figure {
     height: 300px;
 }
 
+figure img {
+    width: 400px;
+    height: 300px;
+}
+
 /* Form */
 
 fieldset {
@@ -124,4 +129,28 @@ select {
 
 #errors ol li {
     color: #ff5555;
+}
+
+/* Past Winners */
+
+body#past-winners table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+body#past-winners th, td {
+    padding: 5px;
+}
+
+body#past-winners table th {
+    text-align: left;
+    background-color: #999999;
+}
+
+body#past-winners table tr:nth-child(even) {
+    background-color: #eee;
+}
+
+body#past-winners table tr:nth-child(odd) {
+    background-color: #fff;
 }

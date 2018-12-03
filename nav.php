@@ -60,6 +60,16 @@
         print '<a href="photos-for-sale.php">Who We Support</a>';
         print '</li>';
         ?>
+        
+        <?php
+        print '<li class="';
+        if ($path_parts['filename'] == "pricing") {
+            print 'activePage';
+        }
+        print '">';
+        print '<a href="pricing.php">Pricing</a>';
+        print '</li>';
+        ?>
     </ul>
 </nav>
 <!-- End of Navigation Bar -->
