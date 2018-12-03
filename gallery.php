@@ -1,5 +1,8 @@
 <?php include "../top.php" ?>
 <main>
+    <p> Displayed below are some of our favorite images our photographers have taken in 
+        the past couple of years, which include nature and urban shots. </p>
+    
     <section class="gallery-images">
         <figure> 
             <img alt='Landscape of Mountains' src="../images/landscape.jpeg">
