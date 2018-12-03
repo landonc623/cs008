@@ -31,6 +31,9 @@
         <figure> 
             <img alt='Large Waterfall in Iceland' src="../images/bigwaterfall.jpeg">
         </figure>
+        <figure>
+            <img alt='Harpers Ferry West Virginia' src="../images/river.jpeg">
+        </figure>
     </section>
 </main>
 
