@@ -53,6 +53,17 @@ fclose($file);
 
 <main>
     <article>
+        <p> <b>Since</b> the very beginning, our founder, Tina Belcher, has always loved collaboration and creativity. She always has enjoyed interacting with locals from the Burlington area, 
+        as she thought the key to creativity was collaboration with others. One way she began connecting to the local photography community in Burlington was through a yearly contest.
+        Any local professional or beginner photographer has the opportunity to submit a photo to our yearly contest to see which one we believe is best. These image can range from
+        nature photos, to city shots. In addition, the photos submitted do not have to be locally taken. We have received photos from multiple different countries, including Iceland
+        and Canada. </p>
+        
+        <p> To submit a photo, click on our “Submit a Photo” tab in the header above, and leave your image! Even if you do not win, we still at Picture Studios appreciate seeing the
+            local creativity, and often hang your images around our headquarters as inspiration. Listed below are the past winners of our contest, dating back to our founding year in
+            1990. These photographers have ranged from local customers to members we have not seen before. We also have listed a brief description of the images we have selected as
+            winners, as a way to display what theme we are looking for when we pick a winner. So read and be inspired, and were looking forward to hopefully seeing your image soon! </p>
+        
         <h3>Some of the past winners of our contest include...</h3>
         <table>
             
