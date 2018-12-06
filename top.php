@@ -11,7 +11,7 @@ $path_parts = pathinfo($phpSelf);
         
         <meta charset="UTF-8">
         <meta name="author" content="Landon Cayia, Lauren Paicopolis, and Natalie Barton">
-        <meta name="description" content="">
+        <meta name="description" content="Photography Website">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <link rel="stylesheet" href="../style/final.css?version=<?php print time(); ?>" type="text/css" media="screen">
