@@ -7,7 +7,7 @@
             print 'activePage';
         }
         print '">';
-        print '<a href="../index.php">Site Map</a>';
+        print '<a href="../../sitemap.php">Site Map</a>';
         print '</li>';
         ?>
         
@@ -53,11 +53,11 @@
         
         <?php
         print '<li class="';
-        if ($path_parts['filename'] == "photos-for-sale") {
+        if ($path_parts['filename'] == "who-we-support") {
             print 'activePage';
         }
         print '">';
-        print '<a href="photos-for-sale.php">Who We Support</a>';
+        print '<a href="who-we-support.php">Who We Support</a>';
         print '</li>';
         ?>
         

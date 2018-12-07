@@ -15,10 +15,14 @@ header {
 
 /* Footer */
 
+footer {
+    clear: both;
+}
+
 footer p {
     clear: both;
     font-size: 0.6em;
-    text-align: center;  
+    text-align: center;
 }
 
 /* Nav */
@@ -36,6 +40,10 @@ nav li {
     float: left;
 }
 
+nav li.activePage {
+    background-color: #222222;
+}
+
 nav li a {
     display: block;
     color: white;
@@ -49,22 +57,47 @@ nav li a:hover {
     color: #999999;
 }
 
+@media only screen and (orientation: portrait) {
+    nav li {
+        float: none;
+    }
+}
+
 /* About */
-
-
 
 /* Gallery  */
 
-figure {
+body#gallery figure {
     border: 1px solid black;
     float: left;
-    width: 400px;
-    height: 300px;
+    width: 320px;
+    height: 240px;
+    margin: 16px 70px;
 }
 
-figure img {
-    width: 400px;
-    height: 300px;
+body#gallery figure img {
+    width: 320px;
+    height: 240px;
+}
+
+@media screen and (max-width: 1502px) {
+    body#gallery figure {
+        margin: 16px 10px;
+    }
+}
+
+@media only screen and (orientation: portrait) {
+    body#gallery figure {
+        float: none;
+        margin: 16px auto;
+        width: 320px;
+        height: 240px;
+    }
+    
+    body#gallery figure img {
+        width: 320px;
+        height: 240px;
+    }
 }
 
 /* Form */
@@ -113,6 +146,12 @@ fieldset.text label {
     padding: 0 0 0.5em 0;
 }
 
+@media only screen and (orientation: portrait) {
+    fieldset.listbox select {
+        width: 100%;
+    }
+}
+
 fieldset.listbox legend {
     padding-bottom: 0.5em;
 }
@@ -122,9 +161,15 @@ select {
 }
 
 .mistake {
-    color: #fff;
-    background-color: #800;
-    border: thin solid #000;
+    background-color: #FF6666;
+}
+
+.mistake legend {
+    float: left;
+}
+
+.mistake p {
+    clear: both;
 }
 
 #errors ol li {
@@ -153,4 +198,13 @@ body#past-winners table tr:nth-child(even) {
 
 body#past-winners table tr:nth-child(odd) {
     background-color: #fff;
+}
+
+/* Who We Support */
+
+body#who-we-support img {
+    float: right;
+    width: 154px;
+    height: 200px;
+    margin-left: 20px;
 }

@@ -2,6 +2,21 @@
 
 <main>
     <article>
+        <section class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img src="../images/slider/jquery1.png" alt="" class="rotating-item">
+                </li>
+                <li>
+                    <img src="../images/slider/jquery2.jpeg" alt="" class="rotating-item">
+                </li>
+
+                <li>
+                    <img src="../images/slider/jquery3.jpeg" alt="" class="rotating-item">
+                </li>
+            </ul>
+        </section>
+        
         <p>Welcome to Picture Studios! We believe that every photo tells a story, and because of that, it is our mission to provide the upmost quality of photos for every occasion. 
            Founded in November of 1990, we have over 25 years in the photography industry, and our talented photographers really display our years if experience! Located in Burlington
            Vermont, we are a local small business with around 10 employees, ranging from landscape to wedding photography. We can do small and large events, and also videography for a 

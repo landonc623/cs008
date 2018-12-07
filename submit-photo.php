@@ -8,9 +8,16 @@ $lastName = '';
 
 $email = '';
 
+$category = '';
+
 $experience = '';
 
-$category = '';
+$family = '';
+$friend = '';
+$client = '';
+$oursite = '';
+$ad = '';
+$other = '';
 
 $target_dir = "../uploads/";
 $target_file = $target_dir . basename($_FILES["uplImage"]["name"]);
@@ -25,9 +32,12 @@ $lastNameERROR = false;
 
 $emailERROR = false;
 
+$categoryERROR = false;
+
 $experienceERROR = false;
 
-$categoryERROR = false;
+$referenceERROR = false;
+$totalChecked = 0;
 
 $imageERROR = false;
 
@@ -59,9 +69,51 @@ if (isset($_POST["btnSubmit"])) {
     
     $email = filter_var($_POST["txtEmail"], FILTER_SANITIZE_EMAIL);
     
+    $category = htmlentities($_POST["radCategory"], ENT_QUOTES, "UTF-8");
+    
     $experience = htmlentities($_POST["lstExperience"], ENT_QUOTES, "UTF-8");
     
-    $category = htmlentities($_POST["radCategory"], ENT_QUOTES, "UTF-8");
+    if(isset($_POST["chkFamily"])) {
+        $family = true;
+        $totalChecked++;
+    } else {
+        $family = false;
+    }
+    
+    if(isset($_POST["chkFriend"])) {
+        $friend = true;
+        $totalChecked++;
+    } else {
+        $friend = false;
+    }
+    
+    if(isset($_POST["chkClient"])) {
+        $client = true;
+        $totalChecked++;
+    } else {
+        $client = false;
+    }
+    
+    if(isset($_POST["chkOurSite"])) {
+        $oursite = true;
+        $totalChecked++;
+    } else {
+        $oursite = false;
+    }
+    
+    if(isset($_POST["chkAd"])) {
+        $ad = true;
+        $totalChecked++;
+    } else {
+        $ad = false;
+    }
+    
+    if(isset($_POST["chkOther"])) {
+        $other = true;
+        $totalChecked++;
+    } else {
+        $other = false;
+    }
     
     $image = htmlentities(basename($_FILES['uplImage']['name']), ENT_QUOTES, "UTF-8");
     $imgext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
@@ -92,14 +144,19 @@ if (isset($_POST["btnSubmit"])) {
         $emailERROR = true;    
     }
     
+    if ($category == "") {
+        $errorMsg[] = "Please select a category.";
+        $categoryERROR = true;
+    }
+    
     if ($experience == "") {
         $errorMsg[] = 'Please enter your email address';
         $experienceERROR = true;
     }
     
-    if ($category == "") {
-        $errorMsg[] = "Please select a category.";
-        $categoryERROR = true;
+    if ($totalChecked < 1) {
+        $errorMsg[] = "Please choose at least one activity";
+        $referenceERROR = true;
     }
     
     // Check if image file is an actual image or fake image
@@ -119,7 +176,7 @@ if (isset($_POST["btnSubmit"])) {
     }
     
     // Check file size
-    if ($_FILES["uplImage"]["size"] > 1000000) {
+    if ($_FILES["uplImage"]["size"] > 10000000) {
         echo "Sorry, file is too large.";
         $uploadOk = 0;
     }
@@ -154,8 +211,14 @@ if (isset($_POST["btnSubmit"])) {
         $dataRecord[] = $firstName;
         $dataRecord[] = $lastName;
         $dataRecord[] = $email;
-        $dataRecord[] = $experience;
         $dataRecord[] = $category;
+        $dataRecord[] = $experience;
+        $dataRecord[] = $family;
+        $dataRecord[] = $friend;
+        $dataRecord[] = $client;
+        $dataRecord[] = $oursite;
+        $dataRecord[] = $ad;
+        $dataRecord[] = $other;
         $dataRecord[] = $image . $imgext;
         
         $myFolder = '../data/';
@@ -187,7 +250,9 @@ if (isset($_POST["btnSubmit"])) {
         }
         
         $message .= '<tr><td><strong>Image</strong></td>';
-        $message .= '<td><a href="https://lcayia.w3.uvm.edu/cs008-final-project/uploads/' . $_FILES["uplImage"]["name"] . '">' . $_FILES["uplImage"]["name"] . '</a></td></tr>';
+        $message .= '<td><a href="' . substr(dirname($phpSelf), 0, -7) . 
+                'uploads/' . $_FILES["uplImage"]["name"] . '">' . 
+                $_FILES["uplImage"]["name"] . '</a></td></tr>';
         
         $message .= '</table>';
         
@@ -284,7 +349,7 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
             <p>
                 <label class="required" for="txtEmail">Email</label>
                 <input
-                    <?php if ($emailERROR) print 'class=mistake"'; ?>
+                    <?php if ($emailERROR) print 'class="mistake"'; ?>
                     id="txtEmail"
                     maxlength="45"
                     name="txtEmail"
@@ -297,7 +362,7 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
             </p>
         </fieldset>
     
-        <fieldset class="radio">
+        <fieldset class="radio<?php if ($categoryERROR) print ' mistake'; ?>">
             <legend>What kind of photo are you submitting?</legend>
             <p>
                 <label class="radio-field">
@@ -319,13 +384,13 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
             </p>
         </fieldset>
         
-        <fieldset class="listbox">
+        <fieldset class="listbox<?php if ($experienceERROR) print ' mistake'; ?>">
             <legend>Photography Experience</legend>
             <p>
-                <select required
+                <select
                         id="lstExperience"
                         name="lstExperience"
-                        tabindex="103">
+                        tabindex="106">
                             <option value="" disabled selected hidden>Please choose...</option>
                             <option
                                 value="Rookie">Rookie - I took this on my phone just for fun or don't know much about photography.</option>
@@ -340,15 +405,86 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
                 </select>
         </fieldset>
         
+        <fieldset class="checkbox<?php if ($referenceERROR) print ' mistake'; ?>">
+            <legend>Where did you hear about us? (check all that apply):</legend>
+            
+            <p>
+                <label class="check-field">
+                    <input <?php if ($family) print " checked "; ?>
+                        id="chkFamily"
+                        name="chkFamily"
+                        tabindex="107"
+                        type="checkbox"
+                        value="Family">Family
+                </label>
+            </p>
+            
+            <p>
+                <label class="check-field">
+                    <input <?php if ($friend) print " checked "; ?>
+                        id="chkFriend"
+                        name="chkFriend"
+                        tabindex="108"
+                        type="checkbox"
+                        value="Friend">Friend
+                </label>
+            </p>
+            
+            <p>
+                <label class="check-field">
+                    <input <?php if ($client) print " checked "; ?>
+                        id="chkClient"
+                        name="chkClient"
+                        tabindex="109"
+                        type="checkbox"
+                        value="Client">Client
+                </label>
+            </p>
+            
+            <p>
+                <label class="check-field">
+                    <input <?php if ($oursite) print " checked "; ?>
+                        id="chkOurSite"
+                        name="chkOurSite"
+                        tabindex="110"
+                        type="checkbox"
+                        value="Our Site">Our Site
+                </label>
+            </p>
+            
+            <p>
+                <label class="check-field">
+                    <input <?php if ($ad) print " checked "; ?>
+                        id="chkAd"
+                        name="chkAd"
+                        tabindex="111"
+                        type="checkbox"
+                        value="Ad">Advertisement
+                </label>
+            </p>
+            
+            <p>
+                <label class="check-field">
+                    <input <?php if ($other) print " checked "; ?>
+                        id="chkOther"
+                        name="chkOther"
+                        tabindex="112"
+                        type="checkbox"
+                        value="Other">Other
+                </label>
+            </p>
+            
+        </fieldset>
+    
         <fieldset class="upload">
             <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
             Choose a file to upload:
-            <input name="uplImage" id="uplImage" type="file">
+            <input name="uplImage" id="uplImage" type="file" tabindex="113">
         </fieldset>
     
         <fieldset class="buttons">
             <legend></legend>
-            <input class="button" id="btnSubmit" name="btnSubmit" tabindex="900"
+            <input class="button" id="btnSubmit" name="btnSubmit" tabindex="114"
                    type="submit" value="Submit">
         </fieldset>
 </form>
